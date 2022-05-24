@@ -1,15 +1,18 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Automotora {
     private List<Vehiculo> vehiculosAVenta;
     private List<Vehiculo> vehiculosVendidos;
     private List<Vendedor> vendedores;
+    private List<Venta> ventas;
 
     public Automotora(){
         this.vehiculosAVenta= new ArrayList<Vehiculo>();
         this.vehiculosVendidos= new ArrayList<Vehiculo>();
         this.vendedores = new ArrayList<Vendedor>();
+        this.ventas = new ArrayList<Venta>();
     }
 
     public List<Vehiculo> getVehiculosAVenta() {
@@ -32,6 +35,7 @@ public class Automotora {
         this.vehiculosAVenta.add(new Vehiculo("Sail","Gris","Chevrolet",
                 2020,6000000,0));
     }
+
     public void venderAuto(String nombre, int año){
         for(Vehiculo auto: this.vehiculosAVenta){
             if(auto.getNombre().equals(nombre) && auto.getAño()==año){
@@ -41,6 +45,7 @@ public class Automotora {
             }
         }
     }
+
     public List<Vehiculo> buscarAutoNombreForBasico(String nombre){
         List<Vehiculo> vehiculos= new ArrayList<>();
         for(int i=0; i<this.vehiculosAVenta.size(); i++){
@@ -70,6 +75,7 @@ public class Automotora {
         }
         return vehiculos;
     }
+
     public void mostrarAutosLista(List<Vehiculo> vehiculos){
         for(Vehiculo auto : vehiculos){
             String datos="nombre: "+auto.getNombre()+", marca: "+auto.getMarca()+", año: "+auto.getAño()
@@ -77,6 +83,7 @@ public class Automotora {
             System.out.println(datos);
         }
     }
+
     public void probarSistema(){
         Automotora automotora= new Automotora();
         automotora.añadirVehiculosPorVender();
@@ -91,12 +98,23 @@ public class Automotora {
     }
 
     public void añadirVendedores(){
-        Vendedor vendedor1 = new Vendedor("German","20.919.321-3",20);
-        boolean validador = CalculoRut.verificarRut(vendedor1.getRut());
-        if (validador){
-            this.vendedores.add(vendedor1);
+        CalculoRut calculoRut = new CalculoRut();
+        Vendedor vendedor = new Vendedor("German","20.919.321-3",20);
+        if (CalculoRut.verificarRut(vendedor.getRut())){
+            this.vendedores.add(vendedor);
+        }else{
+            System.out.println("Rut no válido");
         }
     }
+
+    public void añadirVenta(){
+        //Vendedor vendedor = new Vendedor();
+        //Cliente cliente = new Cliente();
+        //Vehiculo vehiculo = new Vehiculo();
+        //Venta venta = new Venta(vendedor, cliente, vehiculo);
+        //this.ventas.add(venta);
+    }
+
 }
 
 
