@@ -10,9 +10,6 @@ public class Venta {
         this.vehiculo = vehiculo;
     }
 
-    public Venta() {
-    }
-
     public Vendedor getVendedor() {
         return vendedor;
     }

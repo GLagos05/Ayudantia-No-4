@@ -6,12 +6,14 @@ public class Automotora {
     private List<Vehiculo> vehiculosAVenta;
     private List<Vehiculo> vehiculosVendidos;
     private List<Vendedor> vendedores;
+    private List<Cliente> clientes;
     private List<Venta> ventas;
 
     public Automotora(){
         this.vehiculosAVenta= new ArrayList<Vehiculo>();
         this.vehiculosVendidos= new ArrayList<Vehiculo>();
         this.vendedores = new ArrayList<Vendedor>();
+        this.clientes = new ArrayList<Cliente>();
         this.ventas = new ArrayList<Venta>();
     }
 
@@ -107,12 +109,68 @@ public class Automotora {
         }
     }
 
+    public List<Vendedor> buscarVendedorNombre(String nombre){
+        List<Vendedor> vendedores = new ArrayList<Vendedor>();
+        for (Vendedor vendedor : this.vendedores) {
+            if (vendedor.getNombre().equals(nombre)) {
+                vendedores.add(vendedor);
+            }
+        }
+        return vendedores;
+    }
+
+    public List<Vendedor> buscarVendedorRut(String rut){
+        List<Vendedor> vendedores = new ArrayList<Vendedor>();
+        for (Vendedor vendedor : this.vendedores) {
+            if (vendedor.getRut().equals(rut)) {
+                vendedores.add(vendedor);
+            }
+        }
+        return vendedores;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void añadirClientes(Cliente cliente){
+        this.clientes.add(cliente);
+    }
+
+    public void eliminarClientes(Cliente cliente){
+        this.clientes.remove(cliente);
+    }
+
+    public List<Cliente> buscarClienteNombre(String nombre){
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        for (Cliente cliente : this.clientes) {
+            if (cliente.getNombre().equals(nombre)) {
+                clientes.add(cliente);
+            }
+        }
+        return clientes;
+    }
+
+    public List<Cliente> buscarClienteRut(String rut){
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        for (Cliente cliente : this.clientes) {
+            if (cliente.getRut().equals(rut)) {
+                clientes.add(cliente);
+            }
+        }
+        return clientes;
+    }
+
+    public List<Venta> getVentas() {
+        return ventas;
+    }
+
     public void añadirVenta(){
-        //Vendedor vendedor = new Vendedor();
-        //Cliente cliente = new Cliente();
-        //Vehiculo vehiculo = new Vehiculo();
-        //Venta venta = new Venta(vendedor, cliente, vehiculo);
-        //this.ventas.add(venta);
+        Vendedor vendedor = (Vendedor) buscarVendedorNombre("German");
+        Cliente cliente = (Cliente) buscarClienteNombre("Pedrito");
+        Vehiculo vehiculo = (Vehiculo) buscarAutoNombre("Celerio");
+        Venta venta = new Venta(vendedor, cliente, vehiculo);
+        this.ventas.add(venta);
     }
 
 }
